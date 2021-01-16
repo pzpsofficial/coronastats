@@ -1,0 +1,35 @@
+.section-hero {
+  min-height: 100vh;
+  background-image: url('../img/img/hero_back.jpg');
+  background-position: right;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 7vh 10rem 0 10rem;
+  color: #fff;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  h1 {
+    font-size: 6rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 1rem 2rem black;
+  }
+
+  p {
+    font-size: 2rem;
+    text-shadow: 0 0.5rem 1rem black;
+    margin-bottom: 6rem;
+  }
+
+  a {
+    text-decoration: none;
+    font-size: 0.5rem;
+    font-size: 3rem;
+    box-shadow: 0 1rem 2rem black;
+    color: currentColor;
+    text-transform: uppercase;
+  }
+}

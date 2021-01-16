@@ -1,0 +1,23 @@
+{
+  "name": "coronastats",
+  "version": "1.0.0",
+  "description": "App that will provide fresh info about pandemic.",
+  "main": "index.js",
+  "scripts": {
+    "watch:sass": "node-sass ./styles/main.scss ./styles/style.css -w",
+    "start": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pzpsofficial/coronastats.git"
+  },
+  "author": "Bartosz Karpiel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pzpsofficial/coronastats/issues"
+  },
+  "homepage": "https://github.com/pzpsofficial/coronastats#readme",
+  "dependencies": {
+    "node-sass": "^5.0.0"
+  }
+}

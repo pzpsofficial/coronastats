@@ -1,0 +1,36 @@
+.btn {
+  display: inline-block;
+  padding: 1rem 3rem;
+  background-color: #16c79a;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+  transition: all 1s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+  &::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    width: 1px;
+    height: 1px;
+    transform: translate(-50%, -50%) scale(0);
+    background-color: #128165;
+    transition: all 1s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    z-index: -20;
+    backface-visibility: hidden;
+  }
+
+  &:hover::after {
+    transform: translate(-50%, -50%) scale(250);
+  }
+
+  &:hover {
+    color: #16c79a;
+  }
+}
