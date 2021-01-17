@@ -1,0 +1,39 @@
+.section-top {
+  min-height: 30vh;
+  background-image: linear-gradient(rgba(#000, 0.7), rgba(#000, 0.7)),
+    url('../../img/img/summary.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 3rem;
+  text-align: center;
+  position: relative;
+  color: #fff;
+
+  h1 {
+    font-size: 5rem;
+  }
+
+  .branding {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    font-size: 3rem;
+    color: currentColor;
+
+    &__text {
+      margin-left: 2rem;
+      font-size: 2.7rem;
+    }
+
+    .light {
+      font-weight: 400;
+    }
+  }
+}

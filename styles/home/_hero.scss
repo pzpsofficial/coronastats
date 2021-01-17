@@ -1,6 +1,6 @@
 .section-hero {
   min-height: 100vh;
-  background-image: url('../img/img/hero_back.jpg');
+  background-image: url('../../img/img/hero_back.jpg');
   background-position: right;
   background-size: cover;
   background-repeat: no-repeat;
@@ -19,9 +19,10 @@
   }
 
   p {
-    font-size: 2rem;
+    font-size: 3rem;
     text-shadow: 0 0.5rem 1rem black;
     margin-bottom: 6rem;
+    color: #fff;
   }
 
   a {

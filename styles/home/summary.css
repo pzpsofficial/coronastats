@@ -1,0 +1,105 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+::selection {
+  background-color: #16c79a;
+  color: #fff; }
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  box-sizing: border-box; }
+
+h2 {
+  font-size: 5rem;
+  text-transform: uppercase;
+  color: #16c79a;
+  text-align: center;
+  margin: 2rem 0; }
+
+p {
+  font-size: 3rem;
+  color: currentColor; }
+
+h3 {
+  font-size: 4rem;
+  color: #fff; }
+
+.btn, .btn--form {
+  display: inline-block;
+  padding: 1rem 3rem;
+  background-color: #16c79a;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+  transition: all 1s cubic-bezier(0.68, -0.6, 0.32, 1.6); }
+  .btn::after, .btn--form::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    width: 1px;
+    height: 1px;
+    transform: translate(-50%, -50%) scale(0);
+    background-color: #128165;
+    transition: all 1s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    z-index: -20;
+    backface-visibility: hidden; }
+  .btn:hover::after, .btn--form:hover::after {
+    transform: translate(-50%, -50%) scale(250); }
+  .btn:hover, .btn--form:hover {
+    color: #16c79a; }
+
+.btn--form {
+  min-width: 600px;
+  margin-top: 3rem;
+  font-size: 3rem;
+  color: #fff; }
+
+.footer {
+  background-color: #3e3e3e;
+  color: #fff;
+  text-align: center;
+  padding: 2rem 0; }
+
+.section-top {
+  min-height: 30vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../../img/img/summary.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 3rem;
+  text-align: center;
+  position: relative;
+  color: #fff; }
+  .section-top h1 {
+    font-size: 5rem; }
+  .section-top .branding {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    font-size: 3rem;
+    color: currentColor; }
+    .section-top .branding__text {
+      margin-left: 2rem;
+      font-size: 2.7rem; }
+    .section-top .branding .light {
+      font-weight: 400; }

@@ -115,7 +115,7 @@ h3 {
 
 .section-hero {
   min-height: 100vh;
-  background-image: url("/hero_back.1981c71a.jpg");
+  background-image: url("../../img/img/hero_back.jpg");
   background-position: right;
   background-size: cover;
   background-repeat: no-repeat;
@@ -144,7 +144,8 @@ h3 {
 
 .section-services {
   width: 80%;
-  margin: auto; }
+  margin: auto;
+  padding-top: 7vh; }
   .section-services p {
     text-align: center; }
 
@@ -243,6 +244,3 @@ h3 {
       resize: none;
       min-width: 600px;
       border-left: 5px solid #16c79a; }
-
-
-/*# sourceMappingURL=/style.251b6741.css.map */

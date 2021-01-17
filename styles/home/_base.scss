@@ -1,0 +1,40 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+::selection {
+  background-color: #16c79a;
+  color: #fff;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  box-sizing: border-box;
+}
+
+h2 {
+  font-size: 5rem;
+  text-transform: uppercase;
+  color: #16c79a;
+  text-align: center;
+  margin: 2rem 0;
+}
+
+p {
+  font-size: 3rem;
+  color: currentColor;
+}
+
+h3 {
+  font-size: 4rem;
+  color: #fff;
+}

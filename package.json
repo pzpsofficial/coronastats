@@ -4,7 +4,8 @@
   "description": "App that will provide fresh info about pandemic.",
   "main": "index.js",
   "scripts": {
-    "watch:sass": "node-sass ./styles/main.scss ./styles/style.css -w",
+    "watch:sass": "node-sass ./styles/home/main.scss ./styles/home/style.css -w",
+    "watch:sass:summary": "node-sass ./styles/home/summary.scss ./styles/home/summary.css -w",
     "start": "parcel index.html"
   },
   "repository": {

@@ -34,3 +34,11 @@
     color: #16c79a;
   }
 }
+
+.btn--form {
+  @extend .btn;
+  min-width: 600px;
+  margin-top: 3rem;
+  font-size: 3rem;
+  color: #fff;
+}
