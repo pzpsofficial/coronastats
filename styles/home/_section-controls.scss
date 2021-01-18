@@ -1,0 +1,30 @@
+.section-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+
+  input {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 1.5rem 3rem;
+    font-family: inherit;
+    background-color: #16c79a;
+    color: #fff;
+    margin-left: 2rem;
+  }
+
+  label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 3rem;
+  }
+
+  option {
+    padding: 1rem 3rem;
+    font-size: 2rem;
+    font-family: inherit;
+  }
+}

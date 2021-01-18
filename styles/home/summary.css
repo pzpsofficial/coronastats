@@ -103,3 +103,91 @@ h3 {
       font-size: 2.7rem; }
     .section-top .branding .light {
       font-weight: 400; }
+
+.card {
+  max-width: 350px;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  background-color: #e0dede;
+  border-radius: 5px;
+  text-align: center; }
+  .card img {
+    height: auto;
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px; }
+  .card h3 {
+    margin-top: 1rem;
+    color: #16c79a;
+    font-size: 3rem;
+    text-align: center; }
+  .card .info {
+    padding: 0 1.5rem;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem; }
+  .card .new {
+    width: 100%;
+    display: inline-block; }
+  .card .total {
+    margin: 1rem 0;
+    width: 100%;
+    display: inline-block; }
+  .card .confirmed,
+  .card .deaths,
+  .card .recovered {
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+  .card .recovered {
+    color: #16c79a; }
+  .card .deaths {
+    color: #f05454; }
+  .card .break {
+    width: 3px;
+    border-radius: 3px;
+    background-color: #474747;
+    align-self: stretch; }
+  .card .bold {
+    display: inline-block;
+    padding-bottom: 1rem;
+    font-weight: 700;
+    text-align: center; }
+  .card a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 2rem;
+    margin: 1.3rem 0; }
+
+.section-cards {
+  padding: 5rem 5rem;
+  display: grid;
+  grid-gap: 3rem;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(min-content, 35rem)); }
+
+.section-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem; }
+  .section-controls input {
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 1.5rem 3rem;
+    font-family: inherit;
+    background-color: #16c79a;
+    color: #fff;
+    margin-left: 2rem; }
+  .section-controls label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 3rem; }
+  .section-controls option {
+    padding: 1rem 3rem;
+    font-size: 2rem;
+    font-family: inherit; }

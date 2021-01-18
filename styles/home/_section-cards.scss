@@ -1,0 +1,8 @@
+.section-cards {
+  padding: 5rem 5rem;
+
+  display: grid;
+  grid-gap: 3rem;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(min-content, 35rem));
+}

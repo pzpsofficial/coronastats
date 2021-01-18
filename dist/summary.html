@@ -20,7 +20,55 @@
         </div>
         <h1>Summary of the day</h1>
       </section>
-      <section class="section-cards"></section>
+      <div class="section-controls">
+        <form action="#">
+          <label>Country <input type="text" class="search"> </label>
+          <label>Sort
+            <select name="sorting" class="select">
+              <option value="none">&mdash;</option>
+              <option value="alfabetycznie_rosnaco">
+                Alfabetical form A to Z
+              </option>
+              <option value="alfabetycznie_malejaco">
+                Alfabetical form Z to A
+              </option>
+              <option value="most_new">By most new cases</option>
+              <option value="least_new">By least new cases</option>
+              <option value="most_total">By most total cases</option>
+              <option value="least_total">By least total cases</option>
+            </select></label>
+        </form>
+      </div>
+      <section class="section-cards">
+        <!-- <div class="card">
+          <img src="img/img/hero_back.jpg" alt="" />
+          <h3>Państwo</h3>
+          <div class="info">
+            <div class="new">
+              <span class="bold">New cases</span>
+              <div class="confirmed"><i class="fas fa-virus"></i> 46</div>
+              <div class="deaths">
+                <i class="fas fa-skull-crossbones"></i> 3
+              </div>
+              <div class="recovered">
+                <i class="fas fa-virus-slash"></i> 403
+              </div>
+            </div>
+            <div class="break"></div>
+            <div class="total">
+              <span class="bold">All cases</span>
+              <div class="confirmed"><i class="fas fa-virus"></i> 53984</div>
+              <div class="deaths">
+                <i class="fas fa-skull-crossbones"></i> 2339
+              </div>
+              <div class="recovered">
+                <i class="fas fa-virus-slash"></i> 45868
+              </div>
+            </div>
+          </div>
+          <a href="#" class="btn">Details</a>
+        </div> -->
+      </section>
     </main>
 
     <footer class="footer">

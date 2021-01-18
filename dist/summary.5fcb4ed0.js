@@ -871,15 +871,19 @@ try {
 },{}],"scripts/summary.js":[function(require,module,exports) {
 "use strict";
 
-require("regenerator-runtime");
+var _regeneratorRuntime = require("regenerator-runtime");
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-// fetch('https://api.covid19api.com/summary')
+var sectionCards = document.querySelector('.section-cards');
+var input = document.querySelector('.search');
+var select = document.querySelector('.select');
+var startOrder = ''; // fetch('https://api.covid19api.com/summary')
 //   .then((res) => res)
 //   .then((data) => console.log(data.json()));
+
 var getSummary = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
     var res, data;
@@ -897,9 +901,10 @@ var getSummary = /*#__PURE__*/function () {
 
           case 5:
             data = _context.sent;
-            console.log(data);
+            console.log(data.Countries);
+            return _context.abrupt("return", data.Countries);
 
-          case 7:
+          case 8:
           case "end":
             return _context.stop();
         }
@@ -910,7 +915,208 @@ var getSummary = /*#__PURE__*/function () {
   return function getSummary() {
     return _ref.apply(this, arguments);
   };
+}();
+
+var getCountry = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(country) {
+    var res, data;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            country = country.toLowerCase().replace(',', '').split(' '); // console.log(country);
+
+            _context2.next = 4;
+            return fetch("https://restcountries.eu/rest/v2/alpha/".concat(country));
+
+          case 4:
+            res = _context2.sent;
+            _context2.next = 7;
+            return res.json();
+
+          case 7:
+            data = _context2.sent;
+            return _context2.abrupt("return", data.flag);
+
+          case 11:
+            _context2.prev = 11;
+            _context2.t0 = _context2["catch"](0);
+            console.log('Something went wrong');
+
+          case 14:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 11]]);
+  }));
+
+  return function getCountry(_x) {
+    return _ref2.apply(this, arguments);
+  };
 }(); // getSummary();
+
+
+var renderData = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(data) {
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            data.then(function (arr) {
+              return arr.forEach( /*#__PURE__*/function () {
+                var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(element) {
+                  var img, card;
+                  return regeneratorRuntime.wrap(function _callee3$(_context3) {
+                    while (1) {
+                      switch (_context3.prev = _context3.next) {
+                        case 0:
+                          _context3.next = 2;
+                          return getCountry(element.CountryCode);
+
+                        case 2:
+                          img = _context3.sent;
+                          card = "\n      <div class=\"card\" data-country=\"".concat(element.Country, "\" data-new=\"").concat(element.NewConfirmed, "\" data-total=\"").concat(element.TotalConfirmed, "\">\n          <img src=\"").concat(img ? img : '', "\" alt=\"Flag\" />\n          <h3>").concat(element.Country, "</h3>\n          <div class=\"info\">\n            <div class=\"new\">\n              <span class=\"bold\">New cases</span>\n              <div class=\"confirmed\"><i class=\"fas fa-virus\"></i> ").concat(element.NewConfirmed, "</div>\n              <div class=\"deaths\">\n                <i class=\"fas fa-skull-crossbones\"></i> ").concat(element.NewDeaths, "\n              </div>\n              <div class=\"recovered\">\n                <i class=\"fas fa-virus-slash\"></i> ").concat(element.NewRecovered, "\n              </div>\n            </div>\n            <div class=\"break\"></div>\n            <div class=\"total\">\n              <span class=\"bold\">All cases</span>\n              <div class=\"confirmed\"><i class=\"fas fa-virus\"></i> ").concat(element.TotalConfirmed, "</div>\n              <div class=\"deaths\">\n                <i class=\"fas fa-skull-crossbones\"></i> ").concat(element.TotalDeaths, "\n              </div>\n              <div class=\"recovered\">\n                <i class=\"fas fa-virus-slash\"></i> ").concat(element.TotalRecovered, "\n              </div>\n            </div>\n          </div>\n          <a href=\"details.html\" class=\"btn\">Details</a>\n        </div>\n    ");
+                          sectionCards.insertAdjacentHTML('beforeend', card);
+                          startOrder = document.querySelectorAll('.card');
+
+                        case 6:
+                        case "end":
+                          return _context3.stop();
+                      }
+                    }
+                  }, _callee3);
+                }));
+
+                return function (_x3) {
+                  return _ref4.apply(this, arguments);
+                };
+              }());
+            });
+
+          case 1:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+
+  return function renderData(_x2) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+
+var renderSortedData = function renderSortedData(data) {
+  sectionCards.innerHTML = '';
+  data.forEach(function (card) {
+    sectionCards.insertAdjacentElement('beforeend', card);
+  });
+}; // getSummary();
+
+
+renderData(getSummary());
+var timer;
+input.addEventListener('input', function (e) {
+  e.preventDefault();
+  var cards = Array.from(document.querySelectorAll('.card'));
+  cards.forEach(function (card) {
+    if (!card.children[1].textContent.toLowerCase().includes(input.value.toLowerCase())) {
+      card.style.display = 'none';
+    } else {
+      card.style.display = 'block';
+    }
+  });
+});
+select.addEventListener('change', function (e) {
+  e.preventDefault();
+  var cards = Array.from(document.querySelectorAll('.card'));
+
+  if (select.value === 'alfabetycznie_rosnaco') {
+    cards.sort(function (a, b) {
+      if (a.style.display === 'none' && b.style.display === 'none') return;
+
+      if (a.dataset.country.slice(0, 1) < b.dataset.country.slice(0, 1)) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+    renderSortedData(cards);
+  }
+
+  if (select.value === 'alfabetycznie_malejaco') {
+    cards.sort(function (a, b) {
+      if (a.dataset.country.slice(0, 1) > b.dataset.country.slice(0, 1)) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+    renderSortedData(cards);
+  }
+
+  if (select.value === 'most_new') {
+    console.log(cards);
+    cards.sort(function (a, b) {
+      if (+a.dataset.new > +b.dataset.new) {
+        return -1;
+      } else if (+a.dataset.new < +b.dataset.new) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    renderSortedData(cards);
+  }
+
+  if (select.value === 'least_new') {
+    console.log(cards);
+    cards.sort(function (a, b) {
+      if (+a.dataset.new < +b.dataset.new) {
+        return -1;
+      } else if (+a.dataset.new > +b.dataset.new) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    renderSortedData(cards);
+  }
+
+  if (select.value === 'most_total') {
+    console.log(cards);
+    cards.sort(function (a, b) {
+      if (+a.dataset.total > +b.dataset.total) {
+        return -1;
+      } else if (+a.dataset.total < +b.dataset.total) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    renderSortedData(cards);
+  }
+
+  if (select.value === 'least_total') {
+    console.log(cards);
+    cards.sort(function (a, b) {
+      if (+a.dataset.total < +b.dataset.total) {
+        return -1;
+      } else if (+a.dataset.total > +b.dataset.total) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
+    renderSortedData(cards);
+  }
+
+  if (select.value === 'none') {
+    renderSortedData(startOrder);
+  }
+});
 },{"regenerator-runtime":"node_modules/regenerator-runtime/runtime.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -939,7 +1145,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63599" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55090" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

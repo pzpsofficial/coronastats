@@ -1,0 +1,79 @@
+.card {
+  max-width: 350px;
+  box-shadow: 0 1rem 2rem rgba($color: #000, $alpha: 0.15);
+  background-color: rgb(224, 222, 222);
+  border-radius: 5px;
+  text-align: center;
+
+  img {
+    height: auto;
+    width: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  h3 {
+    margin-top: 1rem;
+    color: #16c79a;
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  .info {
+    padding: 0 1.5rem;
+    margin: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem;
+  }
+
+  .new {
+    width: 100%;
+    display: inline-block;
+  }
+
+  .total {
+    margin: 1rem 0;
+    width: 100%;
+    display: inline-block;
+  }
+
+  .confirmed,
+  .deaths,
+  .recovered {
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .recovered {
+    color: #16c79a;
+  }
+
+  .deaths {
+    color: #f05454;
+  }
+
+  .break {
+    width: 3px;
+    border-radius: 3px;
+    background-color: rgb(71, 71, 71);
+    align-self: stretch;
+  }
+
+  .bold {
+    display: inline-block;
+    padding-bottom: 1rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 2rem;
+    margin: 1.3rem 0;
+  }
+}
