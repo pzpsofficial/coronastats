@@ -901,10 +901,9 @@ var getSummary = /*#__PURE__*/function () {
 
           case 5:
             data = _context.sent;
-            console.log(data.Countries);
             return _context.abrupt("return", data.Countries);
 
-          case 8:
+          case 7:
           case "end":
             return _context.stop();
         }
@@ -964,36 +963,42 @@ var renderData = /*#__PURE__*/function () {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            data.then(function (arr) {
-              return arr.forEach( /*#__PURE__*/function () {
-                var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(element) {
-                  var img, card;
-                  return regeneratorRuntime.wrap(function _callee3$(_context3) {
-                    while (1) {
-                      switch (_context3.prev = _context3.next) {
-                        case 0:
-                          _context3.next = 2;
-                          return getCountry(element.CountryCode);
+            data.then( /*#__PURE__*/function () {
+              var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(arr) {
+                var countriesFromApi, flags;
+                return regeneratorRuntime.wrap(function _callee3$(_context3) {
+                  while (1) {
+                    switch (_context3.prev = _context3.next) {
+                      case 0:
+                        countriesFromApi = [];
+                        console.log(arr);
+                        arr.forEach(function (element) {
+                          var img = countriesFromApi.push(getCountry(element.CountryCode));
+                        });
+                        _context3.next = 5;
+                        return Promise.all([].concat(countriesFromApi));
 
-                        case 2:
-                          img = _context3.sent;
-                          card = "\n      <div class=\"card\" data-country=\"".concat(element.Country, "\" data-new=\"").concat(element.NewConfirmed, "\" data-total=\"").concat(element.TotalConfirmed, "\">\n          <img src=\"").concat(img ? img : '', "\" alt=\"Flag\" />\n          <h3>").concat(element.Country, "</h3>\n          <div class=\"info\">\n            <div class=\"new\">\n              <span class=\"bold\">New cases</span>\n              <div class=\"confirmed\"><i class=\"fas fa-virus\"></i> ").concat(element.NewConfirmed, "</div>\n              <div class=\"deaths\">\n                <i class=\"fas fa-skull-crossbones\"></i> ").concat(element.NewDeaths, "\n              </div>\n              <div class=\"recovered\">\n                <i class=\"fas fa-virus-slash\"></i> ").concat(element.NewRecovered, "\n              </div>\n            </div>\n            <div class=\"break\"></div>\n            <div class=\"total\">\n              <span class=\"bold\">All cases</span>\n              <div class=\"confirmed\"><i class=\"fas fa-virus\"></i> ").concat(element.TotalConfirmed, "</div>\n              <div class=\"deaths\">\n                <i class=\"fas fa-skull-crossbones\"></i> ").concat(element.TotalDeaths, "\n              </div>\n              <div class=\"recovered\">\n                <i class=\"fas fa-virus-slash\"></i> ").concat(element.TotalRecovered, "\n              </div>\n            </div>\n          </div>\n          <a href=\"details.html\" class=\"btn\">Details</a>\n        </div>\n    ");
+                      case 5:
+                        flags = _context3.sent;
+                        console.log(flags);
+                        arr.forEach(function (element, index) {
+                          var card = "\n        <div class=\"card\" data-country=\"".concat(element.Country, "\" data-new=\"").concat(element.NewConfirmed, "\" data-total=\"").concat(element.TotalConfirmed, "\" data-slug=\"").concat(element.Slug, "\">\n            <img src=\"").concat(flags[index], "\" alt=\"Flag\" />\n            <h3>").concat(element.Country, "</h3>\n            <div class=\"info\">\n              <div class=\"new\">\n                <span class=\"bold\">New cases</span>\n                <div class=\"confirmed\"><i class=\"fas fa-virus\"></i> ").concat(element.NewConfirmed, "</div>\n                <div class=\"deaths\">\n                  <i class=\"fas fa-skull-crossbones\"></i> ").concat(element.NewDeaths, "\n                </div>\n                <div class=\"recovered\">\n                  <i class=\"fas fa-virus-slash\"></i> ").concat(element.NewRecovered, "\n                </div>\n              </div>\n              <div class=\"break\"></div>\n              <div class=\"total\">\n                <span class=\"bold\">All cases</span>\n                <div class=\"confirmed\"><i class=\"fas fa-virus\"></i> ").concat(element.TotalConfirmed, "</div>\n                <div class=\"deaths\">\n                  <i class=\"fas fa-skull-crossbones\"></i> ").concat(element.TotalDeaths, "\n                </div>\n                <div class=\"recovered\">\n                  <i class=\"fas fa-virus-slash\"></i> ").concat(element.TotalRecovered, "\n                </div>\n              </div>\n            </div>\n            <a href=\"details.html\" class=\"btn\">Details</a>\n          </div>\n      ");
                           sectionCards.insertAdjacentHTML('beforeend', card);
                           startOrder = document.querySelectorAll('.card');
+                        });
 
-                        case 6:
-                        case "end":
-                          return _context3.stop();
-                      }
+                      case 8:
+                      case "end":
+                        return _context3.stop();
                     }
-                  }, _callee3);
-                }));
+                  }
+                }, _callee3);
+              }));
 
-                return function (_x3) {
-                  return _ref4.apply(this, arguments);
-                };
-              }());
-            });
+              return function (_x3) {
+                return _ref4.apply(this, arguments);
+              };
+            }());
 
           case 1:
           case "end":
@@ -1018,6 +1023,9 @@ var renderSortedData = function renderSortedData(data) {
 
 renderData(getSummary());
 var timer;
+input.addEventListener('submit', function (e) {
+  e.preventDefault();
+});
 input.addEventListener('input', function (e) {
   e.preventDefault();
   var cards = Array.from(document.querySelectorAll('.card'));
@@ -1117,6 +1125,12 @@ select.addEventListener('change', function (e) {
     renderSortedData(startOrder);
   }
 });
+sectionCards.addEventListener('click', function (e) {
+  var el = e.target;
+  if (!el.classList.contains('btn')) return;
+  var country = el.closest('.card').dataset.slug;
+  sessionStorage.setItem('country', country);
+});
 },{"regenerator-runtime":"node_modules/regenerator-runtime/runtime.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -1145,7 +1159,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55090" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51078" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

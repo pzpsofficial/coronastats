@@ -6,6 +6,7 @@
   "scripts": {
     "watch:sass": "node-sass ./styles/home/main.scss ./styles/home/style.css -w",
     "watch:sass:summary": "node-sass ./styles/home/summary.scss ./styles/home/summary.css -w",
+    "watch:sass:details": "node-sass ./styles/home/details.scss ./styles/home/details.css -w",
     "start": "parcel index.html"
   },
   "repository": {
@@ -19,6 +20,10 @@
   },
   "homepage": "https://github.com/pzpsofficial/coronastats#readme",
   "dependencies": {
-    "node-sass": "^5.0.0"
+    "chart.js": "^2.9.4",
+    "leaflet": "^1.7.1",
+    "leaflet-providers": "^1.11.0",
+    "node-sass": "^5.0.0",
+    "parcel-bundler": "^1.12.4"
   }
 }

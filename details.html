@@ -3,7 +3,59 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Details</title>
+    <title>Coronastats - details</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="styles/home/details.css" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="img/img/chart-line-solid.svg"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a7b1bf2ed9.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
+    <script defer src="scripts/details.js"></script>
   </head>
-  <body></body>
+  <body>
+    <section class="section-top">
+      <!-- <img src="https://restcountries.eu/data/pol.svg" alt="Flag" />
+      <div class="content">
+        <h1 class="heading">Poland</h1>
+        <h3 class="h3">Capital: <span class="light">Warszawa 🌇</span></h3>
+        <h3 class="h3">
+          Population: <span class="light">14141242164 👨‍👨‍👦‍👦</span>
+        </h3>
+        <h3 class="h3">Currencies: <span class="light">PLN 💵</span></h3>
+      </div> -->
+    </section>
+
+    <section class="section-chart">
+      <canvas id="myChart"></canvas>
+    </section>
+
+    <section class="section-map">
+      <div id="mapid"></div>
+    </section>
+
+    <footer class="footer">
+      <p>&copy; All rights reserved by Bartosz Karpiel 2021.</p>
+      <p>Made with lots of love.</p>
+    </footer>
+  </body>
 </html>

@@ -13,7 +13,6 @@ let startOrder = '';
 const getSummary = async () => {
   const res = await fetch('https://api.covid19api.com/summary');
   const data = await res.json();
-  console.log(data.Countries);
   return data.Countries;
 };
 
@@ -34,51 +33,53 @@ const getCountry = async (country) => {
 // getSummary();
 
 const renderData = async (data) => {
-  data.then((arr) =>
-    arr.forEach(async (element) => {
-      const img = await getCountry(element.CountryCode);
+  data.then(async (arr) => {
+    const countriesFromApi = [];
+    console.log(arr);
 
+    arr.forEach((element) => {
+      const img = countriesFromApi.push(getCountry(element.CountryCode));
+    });
+
+    const flags = await Promise.all([...countriesFromApi]);
+
+    console.log(flags);
+
+    arr.forEach((element, index) => {
       const card = `
-      <div class="card" data-country="${element.Country}" data-new="${
-        element.NewConfirmed
-      }" data-total="${element.TotalConfirmed}">
-          <img src="${img ? img : ''}" alt="Flag" />
-          <h3>${element.Country}</h3>
-          <div class="info">
-            <div class="new">
-              <span class="bold">New cases</span>
-              <div class="confirmed"><i class="fas fa-virus"></i> ${
-                element.NewConfirmed
-              }</div>
-              <div class="deaths">
-                <i class="fas fa-skull-crossbones"></i> ${element.NewDeaths}
+        <div class="card" data-country="${element.Country}" data-new="${element.NewConfirmed}" data-total="${element.TotalConfirmed}" data-slug="${element.Slug}">
+            <img src="${flags[index]}" alt="Flag" />
+            <h3>${element.Country}</h3>
+            <div class="info">
+              <div class="new">
+                <span class="bold">New cases</span>
+                <div class="confirmed"><i class="fas fa-virus"></i> ${element.NewConfirmed}</div>
+                <div class="deaths">
+                  <i class="fas fa-skull-crossbones"></i> ${element.NewDeaths}
+                </div>
+                <div class="recovered">
+                  <i class="fas fa-virus-slash"></i> ${element.NewRecovered}
+                </div>
               </div>
-              <div class="recovered">
-                <i class="fas fa-virus-slash"></i> ${element.NewRecovered}
-              </div>
-            </div>
-            <div class="break"></div>
-            <div class="total">
-              <span class="bold">All cases</span>
-              <div class="confirmed"><i class="fas fa-virus"></i> ${
-                element.TotalConfirmed
-              }</div>
-              <div class="deaths">
-                <i class="fas fa-skull-crossbones"></i> ${element.TotalDeaths}
-              </div>
-              <div class="recovered">
-                <i class="fas fa-virus-slash"></i> ${element.TotalRecovered}
+              <div class="break"></div>
+              <div class="total">
+                <span class="bold">All cases</span>
+                <div class="confirmed"><i class="fas fa-virus"></i> ${element.TotalConfirmed}</div>
+                <div class="deaths">
+                  <i class="fas fa-skull-crossbones"></i> ${element.TotalDeaths}
+                </div>
+                <div class="recovered">
+                  <i class="fas fa-virus-slash"></i> ${element.TotalRecovered}
+                </div>
               </div>
             </div>
+            <a href="details.html" class="btn">Details</a>
           </div>
-          <a href="details.html" class="btn">Details</a>
-        </div>
-    `;
-
+      `;
       sectionCards.insertAdjacentHTML('beforeend', card);
       startOrder = document.querySelectorAll('.card');
-    })
-  );
+    });
+  });
 };
 
 const renderSortedData = (data) => {
@@ -93,6 +94,10 @@ const renderSortedData = (data) => {
 renderData(getSummary());
 
 let timer;
+
+input.addEventListener('submit', (e) => {
+  e.preventDefault();
+});
 
 input.addEventListener('input', (e) => {
   e.preventDefault();
@@ -199,4 +204,11 @@ select.addEventListener('change', (e) => {
   if (select.value === 'none') {
     renderSortedData(startOrder);
   }
+});
+
+sectionCards.addEventListener('click', (e) => {
+  const el = e.target;
+  if (!el.classList.contains('btn')) return;
+  const country = el.closest('.card').dataset.slug;
+  sessionStorage.setItem('country', country);
 });

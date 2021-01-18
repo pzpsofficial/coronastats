@@ -1,0 +1,35 @@
+.section-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #3e3e3e;
+  color: #fff;
+
+  img {
+    width: 40%;
+  }
+
+  h1 {
+    font-size: 5rem;
+    margin-bottom: 3rem;
+  }
+
+  .content {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 3rem;
+  }
+
+  .h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .light {
+    font-weight: 400;
+  }
+}
