@@ -1,6 +1,7 @@
 import 'regenerator-runtime';
 import Chart from 'chart.js';
 
+const code = sessionStorage.getItem('code');
 const country = sessionStorage.getItem('country');
 const mapid = document.querySelector('#mapid');
 
@@ -9,22 +10,28 @@ const mapid = document.querySelector('#mapid');
 const sectionTop = document.querySelector('.section-top');
 
 const getData = async (country) => {
-  const res1 = await fetch(
-    `https://api.covid19api.com/dayone/country/${country}/status/confirmed`
-  );
-  const res2 = await fetch(
-    `https://api.covid19api.com/dayone/country/${country}/status/recovered`
-  );
-  const res3 = await fetch(
-    `https://api.covid19api.com/dayone/country/${country}/status/deaths`
-  );
-  const data1 = await res1.json();
-  const data2 = await res2.json();
-  const data3 = await res3.json();
-  return [data1, data2, data3];
+  try {
+    const res1 = await fetch(
+      `https://api.covid19api.com/dayone/country/${country}/status/confirmed`
+    );
+    const res2 = await fetch(
+      `https://api.covid19api.com/dayone/country/${country}/status/recovered`
+    );
+    const res3 = await fetch(
+      `https://api.covid19api.com/dayone/country/${country}/status/deaths`
+    );
+    const data1 = await res1.json();
+    const data2 = await res2.json();
+    const data3 = await res3.json();
+    return [data1, data2, data3];
+  } catch (err) {
+    alert('Something went wrong with...');
+    throw new Error(err);
+  }
 };
 
 const getCoords = async (country) => {
+  console.log(country);
   const res = await fetch(
     `https://api.covid19api.com/dayone/country/${country}/status/confirmed`
   );
@@ -33,10 +40,31 @@ const getCoords = async (country) => {
   return [+data[0].Lat, +data[0].Lon];
 };
 
+const getCountry = async (code) => {
+  const res = await fetch(`https://restcountries.eu/rest/v2/alpha/${code}`);
+  const data = await res.json();
+
+  console.log(data);
+
+  const html = `
+    <img src="${data.flag}" alt="Flag" />
+      <div class="content">
+        <h1 class="heading">${data.name}</h1>
+        <h3 class="h3">Capital: <span class="light">${data.capital} 🌇</span></h3>
+        <h3 class="h3">
+          Population: <span class="light">${data.population} 👨‍👨‍👦‍👦</span>
+        </h3>
+        <h3 class="h3">Currencies: <span class="light">${data.currencies.code} 💵</span></h3>
+      </div> -->
+  `;
+
+  sectionTop.insertAdjacentHTML('afterbegin', html);
+};
+
 const generateMap = async (cords) => {
   cords = await cords;
 
-  let map = L.map('mapid').setView([cords[0], cords[1]], 5);
+  let map = L.map('mapid').setView([cords[0], cords[1]], 8);
 
   L.tileLayer(
     'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png',
@@ -54,6 +82,7 @@ generateMap(getCoords(country));
 
 const makeChart = async (data, type) => {
   data = await data;
+  console.log(data);
 
   const transformedDataConfirmed = data[0].map((element) => {
     return element['Cases'];
@@ -122,4 +151,5 @@ const makeChart = async (data, type) => {
   });
 };
 
+getCountry(code);
 makeChart(getData(country));

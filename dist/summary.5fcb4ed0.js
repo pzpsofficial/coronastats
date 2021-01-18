@@ -880,7 +880,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var sectionCards = document.querySelector('.section-cards');
 var input = document.querySelector('.search');
 var select = document.querySelector('.select');
-var startOrder = ''; // fetch('https://api.covid19api.com/summary')
+var startOrder = '';
+window.addEventListener('load', function () {
+  input.value = '';
+  select.value = 'none';
+}); // fetch('https://api.covid19api.com/summary')
 //   .then((res) => res)
 //   .then((data) => console.log(data.json()));
 
@@ -982,7 +986,7 @@ var renderData = /*#__PURE__*/function () {
                         flags = _context3.sent;
                         console.log(flags);
                         arr.forEach(function (element, index) {
-                          var card = "\n        <div class=\"card\" data-country=\"".concat(element.Country, "\" data-new=\"").concat(element.NewConfirmed, "\" data-total=\"").concat(element.TotalConfirmed, "\" data-slug=\"").concat(element.Slug, "\">\n            <img src=\"").concat(flags[index], "\" alt=\"Flag\" />\n            <h3>").concat(element.Country, "</h3>\n            <div class=\"info\">\n              <div class=\"new\">\n                <span class=\"bold\">New cases</span>\n                <div class=\"confirmed\"><i class=\"fas fa-virus\"></i> ").concat(element.NewConfirmed, "</div>\n                <div class=\"deaths\">\n                  <i class=\"fas fa-skull-crossbones\"></i> ").concat(element.NewDeaths, "\n                </div>\n                <div class=\"recovered\">\n                  <i class=\"fas fa-virus-slash\"></i> ").concat(element.NewRecovered, "\n                </div>\n              </div>\n              <div class=\"break\"></div>\n              <div class=\"total\">\n                <span class=\"bold\">All cases</span>\n                <div class=\"confirmed\"><i class=\"fas fa-virus\"></i> ").concat(element.TotalConfirmed, "</div>\n                <div class=\"deaths\">\n                  <i class=\"fas fa-skull-crossbones\"></i> ").concat(element.TotalDeaths, "\n                </div>\n                <div class=\"recovered\">\n                  <i class=\"fas fa-virus-slash\"></i> ").concat(element.TotalRecovered, "\n                </div>\n              </div>\n            </div>\n            <a href=\"details.html\" class=\"btn\">Details</a>\n          </div>\n      ");
+                          var card = "\n        <div class=\"card\" data-country=\"".concat(element.Country, "\" data-new=\"").concat(element.NewConfirmed, "\" data-total=\"").concat(element.TotalConfirmed, "\" data-slug=\"").concat(element.Slug, "\" data-code=\"").concat(element.CountryCode, "\">\n            <img src=\"").concat(flags[index], "\" alt=\"Flag\" />\n            <h3>").concat(element.Country, "</h3>\n            <div class=\"info\">\n              <div class=\"new\">\n                <span class=\"bold\">New cases</span>\n                <div class=\"confirmed\"><i class=\"fas fa-virus\"></i> ").concat(element.NewConfirmed, "</div>\n                <div class=\"deaths\">\n                  <i class=\"fas fa-skull-crossbones\"></i> ").concat(element.NewDeaths, "\n                </div>\n                <div class=\"recovered\">\n                  <i class=\"fas fa-virus-slash\"></i> ").concat(element.NewRecovered, "\n                </div>\n              </div>\n              <div class=\"break\"></div>\n              <div class=\"total\">\n                <span class=\"bold\">All cases</span>\n                <div class=\"confirmed\"><i class=\"fas fa-virus\"></i> ").concat(element.TotalConfirmed, "</div>\n                <div class=\"deaths\">\n                  <i class=\"fas fa-skull-crossbones\"></i> ").concat(element.TotalDeaths, "\n                </div>\n                <div class=\"recovered\">\n                  <i class=\"fas fa-virus-slash\"></i> ").concat(element.TotalRecovered, "\n                </div>\n              </div>\n            </div>\n            <a href=\"details.html\" class=\"btn\">Details</a>\n          </div>\n      ");
                           sectionCards.insertAdjacentHTML('beforeend', card);
                           startOrder = document.querySelectorAll('.card');
                         });
@@ -1129,6 +1133,8 @@ sectionCards.addEventListener('click', function (e) {
   var el = e.target;
   if (!el.classList.contains('btn')) return;
   var country = el.closest('.card').dataset.slug;
+  var code = el.closest('.card').dataset.code;
+  sessionStorage.setItem('code', code);
   sessionStorage.setItem('country', country);
 });
 },{"regenerator-runtime":"node_modules/regenerator-runtime/runtime.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -1159,7 +1165,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51078" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57537" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -22743,6 +22743,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+var code = sessionStorage.getItem('code');
 var country = sessionStorage.getItem('country');
 var mapid = document.querySelector('#mapid'); // Section top
 
@@ -22755,44 +22756,51 @@ var getData = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
+            _context.prev = 0;
+            _context.next = 3;
             return fetch("https://api.covid19api.com/dayone/country/".concat(country, "/status/confirmed"));
 
-          case 2:
+          case 3:
             res1 = _context.sent;
-            _context.next = 5;
+            _context.next = 6;
             return fetch("https://api.covid19api.com/dayone/country/".concat(country, "/status/recovered"));
 
-          case 5:
+          case 6:
             res2 = _context.sent;
-            _context.next = 8;
+            _context.next = 9;
             return fetch("https://api.covid19api.com/dayone/country/".concat(country, "/status/deaths"));
 
-          case 8:
+          case 9:
             res3 = _context.sent;
-            _context.next = 11;
+            _context.next = 12;
             return res1.json();
 
-          case 11:
+          case 12:
             data1 = _context.sent;
-            _context.next = 14;
+            _context.next = 15;
             return res2.json();
 
-          case 14:
+          case 15:
             data2 = _context.sent;
-            _context.next = 17;
+            _context.next = 18;
             return res3.json();
 
-          case 17:
+          case 18:
             data3 = _context.sent;
             return _context.abrupt("return", [data1, data2, data3]);
 
-          case 19:
+          case 22:
+            _context.prev = 22;
+            _context.t0 = _context["catch"](0);
+            alert('Something went wrong with...');
+            throw new Error(_context.t0);
+
+          case 26:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee);
+    }, _callee, null, [[0, 22]]);
   }));
 
   return function getData(_x) {
@@ -22807,20 +22815,21 @@ var getCoords = /*#__PURE__*/function () {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            _context2.next = 2;
+            console.log(country);
+            _context2.next = 3;
             return fetch("https://api.covid19api.com/dayone/country/".concat(country, "/status/confirmed"));
 
-          case 2:
+          case 3:
             res = _context2.sent;
-            _context2.next = 5;
+            _context2.next = 6;
             return res.json();
 
-          case 5:
+          case 6:
             data = _context2.sent;
             console.log([+data[0].Lat, +data[0].Lon]);
             return _context2.abrupt("return", [+data[0].Lat, +data[0].Lon]);
 
-          case 8:
+          case 9:
           case "end":
             return _context2.stop();
         }
@@ -22833,19 +22842,53 @@ var getCoords = /*#__PURE__*/function () {
   };
 }();
 
-var generateMap = /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(cords) {
-    var map;
+var getCountry = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(code) {
+    var res, data, html;
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
             _context3.next = 2;
+            return fetch("https://restcountries.eu/rest/v2/alpha/".concat(code));
+
+          case 2:
+            res = _context3.sent;
+            _context3.next = 5;
+            return res.json();
+
+          case 5:
+            data = _context3.sent;
+            console.log(data);
+            html = "\n    <img src=\"".concat(data.flag, "\" alt=\"Flag\" />\n      <div class=\"content\">\n        <h1 class=\"heading\">").concat(data.name, "</h1>\n        <h3 class=\"h3\">Capital: <span class=\"light\">").concat(data.capital, " \uD83C\uDF07</span></h3>\n        <h3 class=\"h3\">\n          Population: <span class=\"light\">").concat(data.population, " \uD83D\uDC68\u200D\uD83D\uDC68\u200D\uD83D\uDC66\u200D\uD83D\uDC66</span>\n        </h3>\n        <h3 class=\"h3\">Currencies: <span class=\"light\">").concat(data.currencies.code, " \uD83D\uDCB5</span></h3>\n      </div> -->\n  ");
+            sectionTop.insertAdjacentHTML('afterbegin', html);
+
+          case 9:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+
+  return function getCountry(_x3) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+
+var generateMap = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(cords) {
+    var map;
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.next = 2;
             return cords;
 
           case 2:
-            cords = _context3.sent;
-            map = L.map('mapid').setView([cords[0], cords[1]], 5);
+            cords = _context4.sent;
+            map = L.map('mapid').setView([cords[0], cords[1]], 8);
             L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
               maxZoom: 20,
               attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
@@ -22854,31 +22897,32 @@ var generateMap = /*#__PURE__*/function () {
 
           case 6:
           case "end":
-            return _context3.stop();
+            return _context4.stop();
         }
       }
-    }, _callee3);
+    }, _callee4);
   }));
 
-  return function generateMap(_x3) {
-    return _ref3.apply(this, arguments);
+  return function generateMap(_x4) {
+    return _ref4.apply(this, arguments);
   };
 }();
 
 generateMap(getCoords(country));
 
 var makeChart = /*#__PURE__*/function () {
-  var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(data, type) {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(data, type) {
     var transformedDataConfirmed, transformedLabels, transformedDataRecovered, transformedDataDeaths, ctx, myChart;
-    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
       while (1) {
-        switch (_context4.prev = _context4.next) {
+        switch (_context5.prev = _context5.next) {
           case 0:
-            _context4.next = 2;
+            _context5.next = 2;
             return data;
 
           case 2:
-            data = _context4.sent;
+            data = _context5.sent;
+            console.log(data);
             transformedDataConfirmed = data[0].map(function (element) {
               return element['Cases'];
             });
@@ -22936,19 +22980,20 @@ var makeChart = /*#__PURE__*/function () {
               }
             });
 
-          case 9:
+          case 10:
           case "end":
-            return _context4.stop();
+            return _context5.stop();
         }
       }
-    }, _callee4);
+    }, _callee5);
   }));
 
-  return function makeChart(_x4, _x5) {
-    return _ref4.apply(this, arguments);
+  return function makeChart(_x5, _x6) {
+    return _ref5.apply(this, arguments);
   };
 }();
 
+getCountry(code);
 makeChart(getData(country));
 },{"regenerator-runtime":"node_modules/regenerator-runtime/runtime.js","chart.js":"node_modules/chart.js/dist/Chart.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -22978,7 +23023,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51078" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57537" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

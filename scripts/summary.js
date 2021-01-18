@@ -6,6 +6,11 @@ const input = document.querySelector('.search');
 const select = document.querySelector('.select');
 let startOrder = '';
 
+window.addEventListener('load', () => {
+  input.value = '';
+  select.value = 'none';
+});
+
 // fetch('https://api.covid19api.com/summary')
 //   .then((res) => res)
 //   .then((data) => console.log(data.json()));
@@ -47,7 +52,7 @@ const renderData = async (data) => {
 
     arr.forEach((element, index) => {
       const card = `
-        <div class="card" data-country="${element.Country}" data-new="${element.NewConfirmed}" data-total="${element.TotalConfirmed}" data-slug="${element.Slug}">
+        <div class="card" data-country="${element.Country}" data-new="${element.NewConfirmed}" data-total="${element.TotalConfirmed}" data-slug="${element.Slug}" data-code="${element.CountryCode}">
             <img src="${flags[index]}" alt="Flag" />
             <h3>${element.Country}</h3>
             <div class="info">
@@ -210,5 +215,7 @@ sectionCards.addEventListener('click', (e) => {
   const el = e.target;
   if (!el.classList.contains('btn')) return;
   const country = el.closest('.card').dataset.slug;
+  const code = el.closest('.card').dataset.code;
+  sessionStorage.setItem('code', code);
   sessionStorage.setItem('country', country);
 });
