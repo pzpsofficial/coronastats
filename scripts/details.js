@@ -54,7 +54,7 @@ const getCountry = async (code) => {
         <h3 class="h3">
           Population: <span class="light">${data.population} 👨‍👨‍👦‍👦</span>
         </h3>
-        <h3 class="h3">Currencies: <span class="light">${data.currencies.code} 💵</span></h3>
+        <h3 class="h3">Currencies: <span class="light">${data.currencies[0].code} 💵</span></h3>
       </div> -->
   `;
 
@@ -78,19 +78,18 @@ const generateMap = async (cords) => {
   mapid.append(map);
 };
 
-generateMap(getCoords(country));
 
 const makeChart = async (data, type) => {
   data = await data;
   console.log(data);
-
+  
   const transformedDataConfirmed = data[0].map((element) => {
     return element['Cases'];
   });
   const transformedLabels = data[0].map((element) => {
     return element['Date'].slice(0, 10);
   });
-
+  
   const transformedDataRecovered = data[1].map((element) => {
     return element['Cases'];
   });
@@ -98,7 +97,7 @@ const makeChart = async (data, type) => {
   const transformedDataDeaths = data[2].map((element) => {
     return element['Cases'];
   });
-
+  
   let ctx = document.getElementById('myChart').getContext('2d');
   let myChart = new Chart(ctx, {
     type: 'line',
@@ -153,3 +152,7 @@ const makeChart = async (data, type) => {
 
 getCountry(code);
 makeChart(getData(country));
+generateMap(getCoords(country));
+
+
+

@@ -11,3 +11,13 @@ accordion.addEventListener('click', (e) => {
 
   content.classList.toggle('active');
 });
+
+if (!navigator.geolocation) {
+  alert('Your browser does not support geolocation');
+} else {
+
+  navigator.geolocation.getCurrentPosition((data) => {console.log(data)}, () => alert('Error'));
+  
+
+
+}

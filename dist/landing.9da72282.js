@@ -126,6 +126,16 @@ accordion.addEventListener('click', function (e) {
   var content = panel.nextElementSibling;
   content.classList.toggle('active');
 });
+
+if (!navigator.geolocation) {
+  alert('Your browser does not support geolocation');
+} else {
+  navigator.geolocation.getCurrentPosition(function (data) {
+    console.log(data);
+  }, function () {
+    return alert('Error');
+  });
+}
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -154,7 +164,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57537" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56141" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

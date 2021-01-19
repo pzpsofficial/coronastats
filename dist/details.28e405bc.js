@@ -22860,7 +22860,7 @@ var getCountry = /*#__PURE__*/function () {
           case 5:
             data = _context3.sent;
             console.log(data);
-            html = "\n    <img src=\"".concat(data.flag, "\" alt=\"Flag\" />\n      <div class=\"content\">\n        <h1 class=\"heading\">").concat(data.name, "</h1>\n        <h3 class=\"h3\">Capital: <span class=\"light\">").concat(data.capital, " \uD83C\uDF07</span></h3>\n        <h3 class=\"h3\">\n          Population: <span class=\"light\">").concat(data.population, " \uD83D\uDC68\u200D\uD83D\uDC68\u200D\uD83D\uDC66\u200D\uD83D\uDC66</span>\n        </h3>\n        <h3 class=\"h3\">Currencies: <span class=\"light\">").concat(data.currencies.code, " \uD83D\uDCB5</span></h3>\n      </div> -->\n  ");
+            html = "\n    <img src=\"".concat(data.flag, "\" alt=\"Flag\" />\n      <div class=\"content\">\n        <h1 class=\"heading\">").concat(data.name, "</h1>\n        <h3 class=\"h3\">Capital: <span class=\"light\">").concat(data.capital, " \uD83C\uDF07</span></h3>\n        <h3 class=\"h3\">\n          Population: <span class=\"light\">").concat(data.population, " \uD83D\uDC68\u200D\uD83D\uDC68\u200D\uD83D\uDC66\u200D\uD83D\uDC66</span>\n        </h3>\n        <h3 class=\"h3\">Currencies: <span class=\"light\">").concat(data.currencies[0].code, " \uD83D\uDCB5</span></h3>\n      </div> -->\n  ");
             sectionTop.insertAdjacentHTML('afterbegin', html);
 
           case 9:
@@ -22907,8 +22907,6 @@ var generateMap = /*#__PURE__*/function () {
     return _ref4.apply(this, arguments);
   };
 }();
-
-generateMap(getCoords(country));
 
 var makeChart = /*#__PURE__*/function () {
   var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(data, type) {
@@ -22995,6 +22993,7 @@ var makeChart = /*#__PURE__*/function () {
 
 getCountry(code);
 makeChart(getData(country));
+generateMap(getCoords(country));
 },{"regenerator-runtime":"node_modules/regenerator-runtime/runtime.js","chart.js":"node_modules/chart.js/dist/Chart.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -23023,7 +23022,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57537" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56141" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
